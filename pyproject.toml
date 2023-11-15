@@ -32,9 +32,6 @@ testpaths = [
     "tests",
 ]
 
-[tool.black]
-line-length = 120
-
 [tool.ruff]
 line-length = 120
 exclude = ["__init__.py", "alembic", "src/upivka.py", "src/fight/example/*"]
@@ -46,6 +43,10 @@ exclude_dirs = ["venv", "tests"]
 python_version = "3.11"
 ignore_missing_imports = true
 exclude = ["venv/", "alembic/"]
+
+
+[tool.black]
+line-length = 120
 
 [tool.isort]
 line_length = 119
