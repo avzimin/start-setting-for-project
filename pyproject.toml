@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "start-project-example"
+version = "0.1.0"
+description = ""
+authors = ["avzimin <anton.zimin@axtechnology.uz>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+ruff = "^0.1.5"
+mypy = "^1.7.0"
+pytest = "^7.4.3"
+pylint = "^3.0.2"
+bandit = "^1.7.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
