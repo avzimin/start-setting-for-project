@@ -3,6 +3,7 @@
 .venv/
 .env/
 __pycache__/
+.ruff_cache/
 .pytest_cache/
 .mypy_cache/
 
@@ -13,8 +14,6 @@ __pycache__/
 *.sh
 .python-version
 
+
 # dotenv
 .env
-
-# test file
-test.py
