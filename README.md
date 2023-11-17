@@ -47,3 +47,5 @@ For better using different Python versions use `pyenv`. [Install it](https://git
     ```sh
     git commit -m "<text>"
     ```
+
+for skip checks `git commit -m "<text>" --no-verify`
