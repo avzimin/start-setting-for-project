@@ -52,7 +52,31 @@ for skip checks `git commit -m "<text>" --no-verify`
 
 ## Info
 
+### About lints
+
 1. `black` formatter default use double quotes it means that most `'` will be replaced to `"`
 2. `isort` automatically places imports
 3. `safety` python package for safety check your packages
 4. `pyproject.toml` a single place of configs. all configs here. for `ruff`, `mypy`, `black`, `isort`, `autoflake`
+
+### About `Task`
+
+I'm using `task` instead of `makefile`. It's really simple to use if you are lazy man as me
+
+It's also only alias for command like this
+
+```sh
+task lint
+```
+
+this command will start this
+
+```sh
+pre-commit run --all-files
+```
+
+For me, it is very useful
+
+### About `pyenv`
+
+
