@@ -49,3 +49,10 @@ For better using different Python versions use `pyenv`. [Install it](https://git
     ```
 
 for skip checks `git commit -m "<text>" --no-verify`
+
+## Info
+
+1. `black` formatter default use double quotes it means that most `'` will be replaced to `"`
+2. `isort` automatically places imports
+3. `safety` python package for safety check your packages
+4. `pyproject.toml` a single place of configs. all configs here. for `ruff`, `mypy`, `black`, `isort`, `autoflake`
