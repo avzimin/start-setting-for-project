@@ -1,10 +1,10 @@
 # To start
 
-If you don't have installed `Task`. Just [do it](https://taskfile.dev/ru-RU/installation/).
+If you don't have installed `Task`. Just [do it](https://taskfile.dev/ru-RU/installation/). (Used to create short aliases to long commands)
 
-If you don't have installed `poetry` (python package manager). Also just [do it](https://python-poetry.org/docs/#installation).
+If you don't have installed `poetry` (python package manager). Also just [do it](https://python-poetry.org/docs/#installation). (It helps to keep packages actual and a human-readable view)
 
-For better using different Python versions use `pyenv`. [Install it](https://github.com/pyenv/pyenv#installation) too.
+If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv#installation) too. (For better using different Python versions)
 
 1. Copy to folder
 
@@ -30,7 +30,7 @@ For better using different Python versions use `pyenv`. [Install it](https://git
     task generate-pre-commit-config
     ```
 
-5. Try to use manually pre-commit hooks
+5. Try to use manually `pre-commit` hooks
 
     ```sh
     task lint
@@ -57,7 +57,7 @@ for skip checks `git commit -m "<text>" --no-verify`
 1. `black` formatter default use double quotes it means that most `'` will be replaced to `"`
 2. `isort` automatically places imports
 3. `safety` python package for safety check your packages
-4. `pyproject.toml` a single place of configs. all configs here. for `ruff`, `mypy`, `black`, `isort`, `autoflake`
+4. `pyproject.toml` a single place of all configs here. For `ruff`, `mypy`, `black`, `isort`, `autoflake`, etc.
 
 ### About `Task`
 
@@ -75,14 +75,15 @@ this command will start this
 pre-commit run --all-files
 ```
 
+You can customize your command in file `Taskfile.yml`
+
 For me, it is very useful
 
 ### About `poetry`
 
-1. It helps to keep packages actual and a human-readable view.
-The most important thing is that helps to separate `dev` packages from `prod` environments.
+1. The most important thing is that helps to separate `dev` packages from `prod` environments.
 
-    Example:
+    Example (part of `project.toml` file):
 
     ```toml
     [tool.poetry.dependencies]
@@ -123,4 +124,18 @@ The most important thing is that helps to separate `dev` packages from `prod` en
     ├── pydantic-core 2.14.1
     │   └── typing-extensions >=4.6.0,<4.7.0 || >4.7.0
     └── typing-extensions >=4.6.1
+    ```
+
+4. If you already cloned the project just activate the virtual environment and install the dependencies
+
+    Setup right path to correct Python version
+
+    ```sh
+    poetry env use $(pyenv which python)
+    ```
+
+    Install dependency
+
+    ```sh
+    poetry install
     ```
