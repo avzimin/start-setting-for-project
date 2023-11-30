@@ -32,7 +32,8 @@ tasks:
   generate-pre-commit-config:
     desc: "Generate .pre-commit-config.yaml file from .pre-commit-config.yaml.template"
     silent: true
-    precondition: test -f .pre-commit-config.yaml.template
+    preconditions:
+      - test -f .pre-commit-config.yaml.template
     generates:
       - .pre-commit-config.yaml
     env:
@@ -49,7 +50,8 @@ tasks:
 
   lint:
     desc: "Run pre-commit run --all-files"
-    precondition: test -f .pre-commit-config.yaml
+    preconditions:
+      - test -f .pre-commit-config.yaml
     cmds:
       - pre-commit run --all-files
 

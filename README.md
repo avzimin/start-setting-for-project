@@ -6,43 +6,67 @@ If you don't have installed `poetry` (python package manager). Also just [do it]
 
 If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv#installation) too. (For better using different Python versions)
 
-1. Copy to folder
+1. Clone this repo.
 
     ```sh
-    cp <path>/my_install.sh .
+    git clone https://github.com/avzimin/start-setting-for-project.git
     ```
 
-2. Run script
+2. Copy `my_install.sh` to your folder to store this file. Example `cp ./my_install.sh <path_to_your_folder>`
+
+    ```sh
+    cp ./my_install.sh ~/
+    ```
+
+3. Copy `start2.py` to your project to test how works code formatter.
+
+    ```sh
+    cp ./start2.py <path_to_your_project>
+    ```
+
+4. Go to your project folder.
+
+    ```sh
+    cd <path_to_your_project>
+    ```
+
+5. Copy from your folder where file is to your project folder.  Example `cp <path_to_your_folder> ./my_install.sh`
+
+    ```sh
+    cp ~/my_install.sh .
+    ```
+
+6. Run script.
 
     ```sh
     ./my_install.sh
     ```
 
-3. Initialization pre-commit
+7. Initialization pre-commit.
 
     ```sh
     pre-commit install --allow-missing-config
     ```
 
-4. Create actual `pre-commit.yaml`
+8. Create actual `pre-commit.yaml`.
 
     ```sh
     task generate-pre-commit-config
     ```
 
-5. Try to use manually `pre-commit` hooks
+9. Try to use manually `pre-commit` hooks.
 
     ```sh
     task lint
     ```
 
-6. Stage files
+10. Stage files.
 
     ```sh
     git add start2.py
     ```
 
-7. Try to commit changes
+11. Try to commit changes.
 
     ```sh
     git commit -m "<text>"
