@@ -139,3 +139,25 @@ For me, it is very useful
     ```sh
     poetry install
     ```
+
+### About `pyenv`
+
+1. To change python version for folder use
+
+    ```sh
+    pyenv local 3.10.5
+    ```
+
+2. To install new version
+
+    ```sh
+    pyenv install 3.11
+    ```
+
+3. To change python version for folder use
+
+    ```sh
+    pyenv 3.10.5
+    ```
+
+4. I don't recommend change system python version. It can broken something

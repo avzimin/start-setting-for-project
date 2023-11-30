@@ -13,6 +13,9 @@ __pycache__/
 *.log.zip
 *.sh
 .python-version
+.pre-commit-config.yaml
+Taskfile.yml
+.pre-commit-config.yaml.template
 
 
 # dotenv
