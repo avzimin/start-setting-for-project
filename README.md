@@ -60,22 +60,22 @@ If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv
     task update-pre-commit-config
     ```
 
-10. Try to use manually `pre-commit` hooks.
-
-    ```sh
-    task lint
-    ```
-
-11. Stage files.
+10. Stage files.
 
     ```sh
     git add start2.py
     ```
 
-12. Try to commit changes.
+11. Try to commit changes.
 
     ```sh
     git commit -m "<text>"
+    ```
+
+12. Try to use manually `pre-commit` hooks.
+
+    ```sh
+    task lint
     ```
 
 for skip checks `git commit -m "<text>" --no-verify`
