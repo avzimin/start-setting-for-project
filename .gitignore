@@ -12,6 +12,7 @@ __pycache__/
 *.log.zip
 .python-version
 .pre-commit-config.yaml
+.coverage
 
 # dotenv
 .env
