@@ -10,7 +10,6 @@ __pycache__/
 *.pyc
 *.log
 *.log.zip
-*.sh
 .python-version
 .pre-commit-config.yaml
 
