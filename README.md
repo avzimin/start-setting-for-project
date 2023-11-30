@@ -66,16 +66,16 @@ If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv
     git add start2.py
     ```
 
-11. Try to commit changes.
-
-    ```sh
-    git commit -m "<text>"
-    ```
-
-12. Try to use manually `pre-commit` hooks.
+11. Try to use manually `pre-commit` hooks.
 
     ```sh
     task lint
+    ```
+
+12. Try to commit changes.
+
+    ```sh
+    git commit -m "<text>"
     ```
 
 for skip checks `git commit -m "<text>" --no-verify`
