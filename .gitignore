@@ -1,4 +1,3 @@
-
 ## folders
 .venv/
 .env/
@@ -14,9 +13,6 @@ __pycache__/
 *.sh
 .python-version
 .pre-commit-config.yaml
-Taskfile.yml
-.pre-commit-config.yaml.template
-
 
 # dotenv
 .env
