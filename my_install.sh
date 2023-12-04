@@ -2,19 +2,15 @@ pyenv local 3.11.5
 poetry init --python "^3.11" -n
 poetry env use $(pyenv which python)
 echo '''
-black
 ruff
 mypy
 pytest
 pylint
-bandit
 pre-commit
-
 ''' >> requirements-dev.txt
 cat requirements-dev.txt | xargs poetry add -G dev
 
 rm ./requirements-dev.txt
-
 
 echo '''
 version: "3"
@@ -46,6 +42,8 @@ tasks:
   update-pre-commit-config:
     desc: "Update versions .pre-commit-config.yaml"
     cmds:
+      - poetry update
+      - task generate-pre-commit-config
       - pre-commit autoupdate
 
   lint:
@@ -54,7 +52,6 @@ tasks:
       - test -f .pre-commit-config.yaml
     cmds:
       - pre-commit run --all-files
-
 ''' >> Taskfile.yml
 
 echo '''
@@ -73,7 +70,6 @@ __pycache__/
 
 # dotenv
 .env
-
 ''' | tee .gitignore .dockerignore
 
 echo '''
@@ -85,30 +81,27 @@ testpaths = [
 
 [tool.ruff]
 line-length = 120
-exclude = ["__init__.py", "alembic", "src/upivka.py", "src/fight/example/*"]
+fix = true
+unsafe-fixes = true
+select = ["ALL"]
+ignore = ["D1", "D203", "D213", "FA102", "ANN101", "S101"]
+exclude = ["__init__.py", "alembic"]
+cache-dir = "/tmp/ruff-cache"
 
-[tool.bandit]
-exclude_dirs = ["venv", "tests"]
+[tool.ruff.isort]
+no-lines-before = ["standard-library", "local-folder"]
+known-third-party = []
+known-local-folder = ["whole_app"]
+lines-after-imports = 2
+force-single-line = true
+
+[tool.ruff.extend-per-file-ignores]
+"tests/*.py" = ["ANN101", "S101", "S311"]
 
 [tool.mypy]
 python_version = "3.11"
 ignore_missing_imports = true
 exclude = ["venv/", "alembic/"]
-
-[tool.black]
-line-length = 120
-
-[tool.isort]
-line_length = 119
-profile = "black"
-multi_line_output = 6
-lines_after_imports = 2
-force_single_line = true
-
-[tool.autoflake]
-check = true
-imports = ["django", "requests", "urllib3"]
-
 ''' >> pyproject.toml
 
 echo '''
@@ -127,27 +120,11 @@ repos:
       - id: python-safety-dependencies-check
         files: pyproject.toml
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: "1.7.5"
-    hooks:
-      - id: bandit
-        args:
-          - "--recursive"
-          - "--aggregate=vuln"
-          - "--configfile=pyproject.toml"
-        additional_dependencies: ["bandit[toml]"]
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.286
     hooks:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix ]
-
-  - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-        name: isort (python)
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -168,11 +145,6 @@ repos:
       - id: check-toml
       - id: debug-statements
       - id: end-of-file-fixer
-
-  - repo: https://github.com/psf/black
-    rev: 23.7.0
-    hooks:
-      - id: black
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.7.0"
