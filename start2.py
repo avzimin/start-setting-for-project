@@ -24,3 +24,7 @@ def do_example2(a: str | None = None, b: int | None = None, c: int | None = None
 def do_example3(a: str | None = None, b: int | None = None, c: int | None = None, d: int | None = None, e: int | None = None,) -> NoReturn:
     """Example function"""
     raise Exception('no way')
+
+
+
+new test
