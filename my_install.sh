@@ -6,6 +6,7 @@ ruff
 mypy
 pytest
 pylint
+vulture
 pre-commit
 ''' >> requirements-dev.txt
 cat requirements-dev.txt | xargs poetry add -G dev
@@ -74,10 +75,14 @@ __pycache__/
 
 echo '''
 [tool.pytest.ini_options]
+cache_dir = "/tmp/pytest_cache"
 addopts = "-vvv"
 testpaths = [
     "tests",
 ]
+
+[tool.vulture]
+exclude = [".mypy_cache/", ".pytest_cache/", ".venv/"]
 
 [tool.ruff]
 line-length = 120
@@ -85,8 +90,8 @@ fix = true
 unsafe-fixes = true
 select = ["ALL"]
 ignore = ["D1", "D203", "D213", "FA102", "ANN101", "S101"]
-exclude = ["__init__.py", "alembic"]
-cache-dir = "/tmp/ruff-cache"
+exclude = ["__init__.py", "alembic", ".venv/*"]
+cache-dir = "/tmp/ruff_cache"
 
 [tool.ruff.isort]
 no-lines-before = ["standard-library", "local-folder"]
@@ -98,9 +103,15 @@ force-single-line = true
 [tool.ruff.extend-per-file-ignores]
 "tests/*.py" = ["ANN101", "S101", "S311"]
 
+[tool.ruff.format]
+quote-style = "double"
+
 [tool.mypy]
+cache_dir = "/tmp/mypy_cache"
 python_version = "3.11"
 ignore_missing_imports = true
+strict = true
+install_types = true
 exclude = ["venv/", "alembic/"]
 ''' >> pyproject.toml
 
@@ -125,6 +136,12 @@ repos:
     hooks:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix ]
+      - id: ruff-format
+
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: 'v2.3'
+    hooks:
+      - id: vulture
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
