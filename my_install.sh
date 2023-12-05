@@ -6,7 +6,6 @@ ruff
 mypy
 pytest
 pylint
-vulture
 pre-commit
 ''' >> requirements-dev.txt
 cat requirements-dev.txt | xargs poetry add -G dev
@@ -81,9 +80,6 @@ testpaths = [
     "tests",
 ]
 
-[tool.vulture]
-exclude = [".mypy_cache/", ".pytest_cache/", ".venv/"]
-
 [tool.ruff]
 line-length = 120
 fix = true
@@ -112,7 +108,7 @@ python_version = "3.11"
 ignore_missing_imports = true
 strict = true
 install_types = true
-exclude = ["venv/", "alembic/"]
+exclude = [".venv/", "alembic/"]
 ''' >> pyproject.toml
 
 echo '''
@@ -137,11 +133,6 @@ repos:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix ]
       - id: ruff-format
-
-  - repo: https://github.com/jendrikseipp/vulture
-    rev: 'v2.3'
-    hooks:
-      - id: vulture
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
