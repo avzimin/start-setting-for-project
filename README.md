@@ -6,22 +6,24 @@ If you don't have installed `poetry` (python package manager). Also just [do it]
 
 If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv#installation) too. (For better using different Python versions)
 
+## Try it your self
+
 1. Clone this repo.
 
     ```sh
-    git clone https://github.com/avzimin/start-setting-for-project.git
+    git clone https://github.com/Ax-Technology/python-template-project.git
     ```
 
-2. Copy `my_install.sh` to your folder to store this file. Example `cp ./my_install.sh <path_to_your_folder>`
+2. Maybe it is not necessary
+
+    ```sh
+    chmod +x ./my_install.sh 
+    ```
+
+3. Copy `my_install.sh` to your home folder to store this file. Example `cp ./my_install.sh <path_to_your_folder>`
 
     ```sh
     cp ./my_install.sh ~/
-    ```
-
-3. Copy `start2.py` to your project to test how works code formatter.
-
-    ```sh
-    cp ./start2.py <path_to_your_project>
     ```
 
 4. Go to your project folder.
@@ -42,37 +44,25 @@ If you don't have installed `pyenv`. [Install it](https://github.com/pyenv/pyenv
     ./my_install.sh
     ```
 
-7. Initialization pre-commit.
-
-    ```sh
-    pre-commit install --allow-missing-config
-    ```
-
-8. Create actual `pre-commit.yaml`.
+7. Create actual `pre-commit.yaml` and under the hood it install pre-commit.
 
     ```sh
     task generate-pre-commit-config
     ```
 
-9. Update `pre-commit` dependency.
+8. Update `pre-commit` dependency.
 
     ```sh
     task update-pre-commit-config
     ```
 
-10. Stage files.
-
-    ```sh
-    git add start2.py
-    ```
-
-11. Try to use manually `pre-commit` hooks.
+9. Try to use manually `pre-commit` hooks.
 
     ```sh
     task lint
     ```
 
-12. Try to commit changes.
+10. Try to commit changes.
 
     ```sh
     git commit -m "<text>"
@@ -84,10 +74,8 @@ for skip checks `git commit -m "<text>" --no-verify`
 
 ### About lints
 
-1. `black` formatter default use double quotes it means that most `'` will be replaced to `"`
-2. `isort` automatically places imports
-3. `safety` python package for safety check your packages
-4. `pyproject.toml` a single place of all configs here. For `ruff`, `mypy`, `black`, `isort`, `autoflake`, etc.
+1. `safety` python package for safety check your packages
+2. `pyproject.toml` a single place of all configs here. For `ruff`, `mypy`, etc.
 
 ### About `Task`
 
@@ -122,16 +110,11 @@ For me, it is very useful
 
 
     [tool.poetry.group.dev.dependencies]
-    black = "^23.11.0"
     ruff = "^0.1.5"
     mypy = "^1.7.0"
     pytest = "^7.4.3"
-    pylint = "^3.0.2"
-    bandit = "^1.7.5"
     pre-commit = "^3.5.0"
     safety = "^2.3.5"
-    isort = "^5.12.0"
-    autoflake = "^2.2.1"
     ```
 
 2. You can update all dependencies to the latest version  compatibility with each other
@@ -175,7 +158,7 @@ For me, it is very useful
 1. To change python version for folder use
 
     ```sh
-    pyenv local 3.10.5
+    pyenv local 3.10
     ```
 
 2. To install new version
@@ -187,7 +170,34 @@ For me, it is very useful
 3. To change python version for folder use
 
     ```sh
-    pyenv 3.10.5
+    pyenv 3.10
     ```
 
 4. I don't recommend change system python version. It can broken something
+
+### TODO
+
+-[ ] write poetry settings
+
+-[ ] ...
+
+### draft
+
+```poetry settings
+cache-dir = "/Users/antonzimin/Library/Caches/pypoetry"
+experimental.system-git-client = false
+installer.max-workers = null
+installer.modern-installation = true
+installer.no-binary = null
+installer.parallel = true
+virtualenvs.create = true
+virtualenvs.in-project = true
+virtualenvs.options.always-copy = false
+virtualenvs.options.no-pip = false
+virtualenvs.options.no-setuptools = false
+virtualenvs.options.system-site-packages = false
+virtualenvs.path = "{cache-dir}/virtualenvs"  # /Users/antonzimin/Library/Caches/pypoetry/virtualenvs
+virtualenvs.prefer-active-python = true
+virtualenvs.prompt = "{project_name}-py{python_version}"
+warnings.export = true
+```
